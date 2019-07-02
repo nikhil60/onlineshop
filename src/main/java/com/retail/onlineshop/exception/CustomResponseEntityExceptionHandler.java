@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler 
 {
-	@ExceptionHandler(ProductNotFoundException.class)
+	@ExceptionHandler({ProductNotFoundException.class,CustomerNotFoundException.class,InvalidLoginException.class,OrderNotFoundException.class,CartNotFoundException.class})
 	public ResponseEntity<Object> customhandleException(Exception ex, WebRequest request)
 	{
 		ExceptionResponse exceptionResponse = new ExceptionResponse();

@@ -22,9 +22,9 @@ public class ProductService {
 		return savedProduct;
 	}
 	
-	public void updateProduct(Product product)
+	public void updateProduct(Product product,Integer productId)
 	{
-		Optional<Product> optionalProduct = productRepository.findById(product.getProductId());
+		Optional<Product> optionalProduct = productRepository.findById(productId);
 		if(optionalProduct.isPresent())
 			productRepository.save(product);
 		else
