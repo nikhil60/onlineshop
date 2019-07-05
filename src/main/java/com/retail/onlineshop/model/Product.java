@@ -24,7 +24,6 @@ public class Product {
 	@GeneratedValue
 	private Integer productId;
 	
-	
 	private String productName;
 	
 	private BigDecimal productPrice;

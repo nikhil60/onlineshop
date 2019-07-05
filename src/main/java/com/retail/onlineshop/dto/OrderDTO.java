@@ -27,6 +27,10 @@ public class OrderDTO implements Serializable{
 	private BigDecimal orderPrice;
 	@NotNull
 	private Integer cartId;
+	private BigDecimal cartPrice;
+	private BigDecimal cartDiscount;
+	private BigDecimal cartTax;
+	private BigDecimal cartTotal;
 	
 	public OrderDTO()
 	{
@@ -89,6 +93,38 @@ public class OrderDTO implements Serializable{
 	public void setCartId(Integer cartId) {
 		this.cartId = cartId;
 	}
+	
+	public BigDecimal getCartPrice() {
+		return cartPrice;
+	}
+
+	public void setCartPrice(BigDecimal cartPrice) {
+		this.cartPrice = cartPrice;
+	}
+
+	public BigDecimal getCartDiscount() {
+		return cartDiscount;
+	}
+
+	public void setCartDiscount(BigDecimal cartDiscount) {
+		this.cartDiscount = cartDiscount;
+	}
+
+	public BigDecimal getCartTax() {
+		return cartTax;
+	}
+
+	public void setCartTax(BigDecimal cartTax) {
+		this.cartTax = cartTax;
+	}
+
+	public BigDecimal getCartTotal() {
+		return cartTotal;
+	}
+
+	public void setCartTotal(BigDecimal cartTotal) {
+		this.cartTotal = cartTotal;
+	}
 
 	public static OrderDTO convertToDTO(Order order)
 	{
@@ -100,6 +136,10 @@ public class OrderDTO implements Serializable{
 		orderDTO.setOrderQty(order.getOrderQuantity());
 		orderDTO.setOrderPrice(order.getOrderPrice());
 		orderDTO.setCartId(order.getCart().getCartId());
+		orderDTO.setCartPrice(order.getCart().getCartPrice());
+		orderDTO.setCartDiscount(order.getCart().getCartDiscount());
+		orderDTO.setCartTax(order.getCart().getCartTax());
+		orderDTO.setCartTotal(order.getCart().getCartTotal());
 		return orderDTO;
 	}
 

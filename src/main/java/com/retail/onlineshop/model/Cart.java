@@ -1,5 +1,6 @@
 package com.retail.onlineshop.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,6 +31,17 @@ public class Cart {
 	
 	@OneToMany(mappedBy="cart",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private Set<Order> orderSet = new HashSet<Order>();
+	
+	private BigDecimal cartPrice;
+	
+	private BigDecimal cartDiscount;
+	
+	private BigDecimal cartTax;
+	
+	private BigDecimal cartTotal;
+	
+	@OneToMany(mappedBy="cart",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private Set<Coupon> couponSet = new HashSet<Coupon>();
 
 	public Cart()
 	{}
@@ -81,6 +93,59 @@ public class Cart {
 	{
 		orderSet.remove(order);
 		order.setCart(null);
+	}
+
+	public BigDecimal getCartPrice() {
+		return cartPrice;
+	}
+
+	public void setCartPrice(BigDecimal cartPrice) {
+		this.cartPrice = cartPrice;
+	}
+	
+	public void applyCoupon(Coupon coupon)
+	{
+		couponSet.add(coupon);
+		coupon.setCart(this);
+	}
+
+	public void removeCoupon(Coupon coupon)
+	{
+		couponSet.remove(coupon);
+		coupon.setCart(null);
+	}
+	
+	
+	public Set<Coupon> getCouponSet() {
+		return couponSet;
+	}
+
+	public void setCouponSet(Set<Coupon> couponSet) {
+		this.couponSet = couponSet;
+	}
+
+	public BigDecimal getCartDiscount() {
+		return cartDiscount;
+	}
+
+	public void setCartDiscount(BigDecimal cartDiscount) {
+		this.cartDiscount = cartDiscount;
+	}
+
+	public BigDecimal getCartTax() {
+		return cartTax;
+	}
+
+	public void setCartTax(BigDecimal cartTax) {
+		this.cartTax = cartTax;
+	}
+
+	public BigDecimal getCartTotal() {
+		return cartTotal;
+	}
+
+	public void setCartTotal(BigDecimal cartTotal) {
+		this.cartTotal = cartTotal;
 	}
 
 	@Override
