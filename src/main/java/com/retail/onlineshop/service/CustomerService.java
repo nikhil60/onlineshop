@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.retail.onlineshop.exception.CustomerNotFoundException;
 import com.retail.onlineshop.model.Cart;
 import com.retail.onlineshop.model.Customer;
+import com.retail.onlineshop.repository.CartRepository;
 import com.retail.onlineshop.repository.CustomerRepository;
 
 @Service
@@ -17,11 +18,15 @@ public class CustomerService {
 
 	@Autowired
 	CustomerRepository customerRepository;
+	
+	@Autowired
+	CartRepository cartRepository;
 		
 	public Customer saveCustomer(Customer customer)
 	{
 		Cart cart = new Cart();
 		cart.setCreationDate(new Date());
+		cartRepository.save(cart);
 		customer.setCart(cart);
 		Customer savedCustomer  = customerRepository.save(customer);
 		return savedCustomer;

@@ -17,4 +17,6 @@ public interface CustomerRepository extends JpaRepository<Customer,Integer> {
 	
 	@Query("select c.cart from Customer c where c.customerId=:customerId")
 	public Optional<Cart> findCartByCustomer(@Param("customerId") Integer customerId);
+
+	public Optional<Customer> findByuserName(String userName);
 }
